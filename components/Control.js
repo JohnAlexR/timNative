@@ -5,16 +5,16 @@ function Control( {isRunning, handleLeftButtonPress, handleRightButtonPress }) {
     return (
         <>
             <TouchableOpacity 
-                style={[styles.controlButtonBorder, { backgroundColor: isRunning ? "#333333" : "1c1cle"}]}
+                style={[styles.controlButtonBorder, { backgroundColor: isRunning ? "#333333" : "#1c1cle"}]}
                 onPress={handleLeftButtonPress}>
                 <View style={styles.controlButton}>
-                    <Text style={{color: isRunning ? "#fff" : "#9d9ca2"}}>
-                        {isRunning ? "Lap" : "Reset"}
-                    </Text>
+                    {!isRunning && <Text style={{color: isRunning ? "#fff" : "#9d9ca2"}}>
+                        Reset
+                    </Text>}
                 </View>
             </TouchableOpacity>
             <TouchableOpacity 
-                style={[styles.controlButtonBorder, { backgroundColor: isRunning ? "#340e0d" : "0a2a12"}]}
+                style={[styles.controlButtonBorder, { backgroundColor: isRunning ? "#340e0d" : "#0a2a12"}]}
                 onPress={handleRightButtonPress}>
                 <View style={styles.controlButton}>
                     <Text style={{color: isRunning ? "#ea4c49" : "#37d05c"}}>

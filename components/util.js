@@ -24,3 +24,11 @@ let remainSeconds = seconds % 60;
   
 return `${padToTwo(minutes)}:${padToTwo(remainSeconds)}:${padToTwo(remainCentiseconds)}`;
 };
+
+export const displayDollars = (centiseconds) => {
+  let earnedDollars = 0
+
+  earnedDollars = centiseconds * .015
+
+  return `${earnedDollars.toFixed(4)}`
+}

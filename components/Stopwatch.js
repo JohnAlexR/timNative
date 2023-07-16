@@ -1,16 +1,16 @@
 import  React, { useState, useRef, useCallback } from "react";
-import { StyleSheet, SafeAreaView, Text, View, Platform } from "react-native";
+import { StyleSheet, SafeAreaView, Text, View, Platform, TextInput } from "react-native";
 import { StatusBar } from "react-native";
 import Result from "./Result";
 import Control from "./Control";
-import { displayTime } from "./util";
-import Header from "./Header";
+import { displayTime, displayDollars } from "./util";
 
 export default function Stopwatch() {
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false)
     const [results, setResults] = useState([])
     const timer = useRef(null)
+    const [hourly, setHourly] = useState(0)
 
     const handleLeftButtonPress = useCallback(()=> {
         if(isRunning) {
@@ -36,21 +36,27 @@ export default function Stopwatch() {
     }, [isRunning])
 
     return (
-        <SafeAreaView style={StyleSheet.container}>
-            <Header />
+        <SafeAreaView style={styles.container}>
             <StatusBar style="light" />
-            <View style={StyleSheet.display}>
-                <Text style={StyleSheet.displayText}>{displayTime(time)}</Text>
+            <View style={styles.display}>
+                <Text style={styles.dollarText}>${displayDollars(time)}</Text>
+                <Text style={styles.displayText}>{displayTime(time)}</Text>
             </View>
-            <View style={StyleSheet.control}>
+            <View style={styles.control}>
                 <Control
                     isRunning={isRunning}
                     handleLeftButtonPress={handleLeftButtonPress}
                     handleRightButtonPress={handleRightButtonPress}
                 />
             </View>
-            <View style={styles.result}>
-                <Result results={results}/>
+            <View style={styles.hourlyContainer}>
+                <Text style={styles.hourly}>Hourly Wage:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder= '0'
+                    
+
+            />
             </View>
         </SafeAreaView>
     )
@@ -59,7 +65,7 @@ export default function Stopwatch() {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "black",
+      height: '100%',
     },
     display: {
       flex: 3 / 5,
@@ -68,14 +74,37 @@ const styles = StyleSheet.create({
     },
     displayText: {
       color: "#fff",
-      fontSize: 70,
+      fontSize: 30,
       fontWeight: "200",
       fontFamily: Platform.OS === "ios" ? "Helvetica Neue" : null,
+    },
+    dollarText: {
+        color: "#fff",
+        fontSize: 70,
+        fontWeight: "200",
+        fontFamily: Platform.OS === "ios" ? "Helvetica Neue" : null,
     },
     control: {
       height: 70,
       flexDirection: "row",
       justifyContent: "space-around",
     },
-    result: { flex: 2 / 5 },
+    result: { 
+        flex: 2 / 5 },
+    input: {
+        height: 40,
+        width: 70,
+        borderColor: "#fff",
+        borderWidth: 1,
+        color: 'white'
+    },
+    hourly: {
+        color: "white"
+    },
+    hourlyContainer: {
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'center',
+        marginTop: 50,
+    }
   });

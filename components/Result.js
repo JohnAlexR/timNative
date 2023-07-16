@@ -1,22 +1,24 @@
 import React from "react"
-import { StyleSheet, Text, ScrollView, View } from "react-native";
+import { StyleSheet, Text, ScrollView, View, SafeAreaView } from "react-native";
 import { displayTime } from "./util"
 
 function Result ( {results}) {
 
     return (
-        <ScrollView>
-            <View style={StyleSheet.resultItem} />
+        <SafeAreaView>
+            <ScrollView>
+                <View style={StyleSheet.resultItem} />
 
-            {results.map((item, index) => (
-                <View key={index} style={StyleSheet.resultItem}>
-                    <Text style={StyleSheet.resultItemText}>
-                        Lap {results.length - index}
-                    </Text>
-                    <Text style={StyleSheet.resultItemText}>{displayTime(item)}</Text>
-                </View>
-            ))}
-        </ScrollView>
+                {results.map((item, index) => (
+                    <View key={index} style={StyleSheet.resultItem}>
+                        <Text style={StyleSheet.resultItemText}>
+                            Lap {results.length - index}
+                        </Text>
+                        <Text style={StyleSheet.resultItemText}>{displayTime(item)}</Text>
+                    </View>
+                ))}
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
