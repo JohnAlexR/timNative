@@ -25,10 +25,10 @@ let remainSeconds = seconds % 60;
 return `${padToTwo(minutes)}:${padToTwo(remainSeconds)}:${padToTwo(remainCentiseconds)}`;
 };
 
-export const displayDollars = (centiseconds) => {
+export const displayDollars = (centiseconds, hourly) => {
   let earnedDollars = 0
 
-  earnedDollars = centiseconds * .015
+  earnedDollars = (centiseconds * hourly/360000)
 
   return `${earnedDollars.toFixed(4)}`
 }

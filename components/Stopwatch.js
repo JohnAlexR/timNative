@@ -39,7 +39,7 @@ export default function Stopwatch() {
         <SafeAreaView style={styles.container}>
             <StatusBar style="light" />
             <View style={styles.display}>
-                <Text style={styles.dollarText}>${displayDollars(time)}</Text>
+                <Text style={styles.dollarText}>${displayDollars(time, hourly)}</Text>
                 <Text style={styles.displayText}>{displayTime(time)}</Text>
             </View>
             <View style={styles.control}>
@@ -54,8 +54,10 @@ export default function Stopwatch() {
                 <TextInput
                     style={styles.input}
                     placeholder= '0'
-                    
-
+                    value={hourly}
+                    keyboardType="numeric"
+                    inputType="numeric"
+                    onChangeText={(text) => setHourly(text)}
             />
             </View>
         </SafeAreaView>
@@ -96,7 +98,8 @@ const styles = StyleSheet.create({
         width: 70,
         borderColor: "#fff",
         borderWidth: 1,
-        color: 'white'
+        color: 'white',
+        padding: 5
     },
     hourly: {
         color: "white"
