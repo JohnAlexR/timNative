@@ -60,21 +60,26 @@ export default function Stopwatch() {
                 <Text style={styles.hourly}>Hourly Wage:</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder= '0'
+                    placeholder= '$0'
+                    placeholderTextColor={'#f8f8ff'}
                     value={hourly}
                     keyboardType="numeric"
                     inputType="numeric"
                     onChangeText={(text) => setHourly(text)}
+                    maxLength={5}
             />
             </View>
             <View style={styles.hourlyContainer}>
-                <Text style={styles.hourly}>Tax (optional)</Text>
+                <Text style={styles.hourly}>Tax % (optional)</Text>
                 <TextInput
                     style={styles.input}
                     value={taxRate}
+                    placeholder='0%'
+                    placeholderTextColor={'#f8f8ff'}
                     keyboardType="numeric"
                     inputType='numeric'
                     onChangeText={(text) => setTaxRate(text)}
+                    maxLength={2}
                 />
             </View>
         </SafeAreaView>
@@ -119,15 +124,17 @@ const styles = StyleSheet.create({
         flex: 2 / 5 },
     input: {
         height: 40,
-        width: 75,
+        width: 95,
         borderColor: "#fff",
         borderWidth: 1,
         color: 'white',
         padding: 5,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 20
     },
     hourly: {
-        color: "white"
+        color: "white",
+        fontSize: 20
     },
     hourlyContainer: {
         flexDirection: 'row',
